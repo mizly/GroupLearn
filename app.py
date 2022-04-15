@@ -2,18 +2,15 @@ from flask import Flask, render_template, request
 import requests
 from requests.structures import CaseInsensitiveDict
 
-CLIENT_ID = "964586066252300308"
-CLIENT_SECRET = "XPHuUMzJBHx5jVw8BFMaFsZ_613NymYe"
-
 app = Flask(__name__)
 
-def exchange_code(CLIENT_ID,CLIENT_SECRET,API_ENDPOINT,code):
+def exchange_code(redirect, CLIENT_ID,CLIENT_SECRET,API_ENDPOINT,code):
     data = {
         "client_id": CLIENT_ID,
         "client_secret": CLIENT_SECRET,
         "code": code,
         "grant_type": 'authorization_code',
-        "redirect_uri": "http://127.0.0.1:5000/auth?type=discord"
+        "redirect_uri": redirect
     }
 
     headers = {
@@ -33,7 +30,7 @@ def authpage():
     type = request.args.get('type')
     if type == "discord":
         code = request.args.get('code')
-        response = (exchange_code("964586066252300308","XPHuUMzJBHx5jVw8BFMaFsZ_613NymYe","https://discord.com/api/v8",code))
+        response = (exchange_code("http://127.0.0.1:5000/auth?type=discord","964586066252300308","XPHuUMzJBHx5jVw8BFMaFsZ_613NymYe","https://discord.com/api/v8",code))
 
         headers = CaseInsensitiveDict()
         headers["Authorization"] = "Bearer " + response["access_token"]
