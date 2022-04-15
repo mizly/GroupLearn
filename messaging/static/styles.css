@@ -1,0 +1,96 @@
+body {
+    margin: 0px;
+  }
+
+  h1 {
+    color: White;
+    font-family: Verdana;
+    font-size: 40px;
+    text-align: center;
+    padding: 30px;
+    margin: 0px;
+  }
+
+  h2 {
+    color: White;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 0px;
+    margin-top: -10px;
+  }
+
+  h3 {
+    color: White;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+  }
+
+  .paragraph {
+    margin: auto;
+    margin-top: 50px;
+    font-family: verdana;
+    font-size: 20px;
+    color:white;
+    width: 90%;
+    text-align: center;
+  }
+
+  .header {
+    margin: auto;
+    background: rgb(0, 119, 128);
+   }
+
+   hr {
+    margin: 30px auto 30px auto;
+    height: 5px;
+    background: white;
+   }
+
+   div.video {
+    text-align: center;
+   }
+
+   .video2 {
+     margin-left: 20px;
+   }
+
+   a {
+     text-decoration: none;
+     color: blue;
+   }
+
+   .putlinks {
+     display: inline;
+   }
+
+   .border {
+     border-style: solid;
+     border-width: 5px;
+     border-color: rgb(0, 119, 128);
+   }
+   .left {
+     text-align: left;
+   }
+
+   .table {
+     text-align:left;
+     margin-left:20px;
+     display: inline;
+
+   }
+
+   .css-rainbow-text {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background: linear-gradient(90deg, #f00, #ff2b00, #f50, #ff8000, #fa0, #ffd500, #ff0, #d4ff00, #af0, #80ff00, #5f0, #2bff00, #0f0, #00ff2b, #0f5, #00ff80, #0fa, #00ffd5, #0ff, #00d4ff, #0af, #007fff, #05f, #002bff, #00f, #2a00ff, #50f, #7f00ff, #a0f, #d400ff, #f0f, #ff00d4, #f0a, #ff0080, #f05, #ff002b, #f00);
+    color: #0000;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 50px;
+    font-weight: bold;
+    display: inline-block;
+}
