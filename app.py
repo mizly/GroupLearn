@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, make_response, render_template, request, redirect, url_for
 import pyrebase
 
 app = Flask(__name__)
@@ -25,14 +25,26 @@ def signup():
         pwd_confirm = request.form['pwd_confirm']
 
         if pwd != pwd_confirm:
-            return render_template('signup.html', confirmFail=True)
+            return render_template('signup.html', confirmFail=True, weakPwd=False)
         
-        user = auth.create_user_with_email_and_password(email, pwd)
+        try:
+            user = auth.create_user_with_email_and_password(email, pwd)
+            auth.send_email_verification(user['userToken'])
 
-        
+            resp = make_response(redirect(url_for('verify')))
+            resp.set_cookie('token', user['token'])
+            return resp
+        except Exception as err:
+            if 'WEAK_PASSWORD' in str(err):
+                return render_template('signup.html', confirmFail=False, weakPwd=True)
 
-    return render_template('signup.html', confirmFail=False)
+    return render_template('signup.html', confirmFail=False, weakPwd=False)
 
+@app.route('/verify')
+def verify():
+    token = request.cookies.get('token')
+    user = auth.get_account_info(token)
+    print(user)
 
 if __name__ == '__main__':
     app.run(debug=True)

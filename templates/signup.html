@@ -9,6 +9,8 @@
   <body>
     {% if confirmFail %}
     <p>Passwords entered do not match.</p>
+    {% endif %} {% if weakPwd %}
+    <p>Password should be at least 6 characters.</p>
     {% endif %}
     <form method="POST">
       <label>Name</label>
