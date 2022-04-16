@@ -13,6 +13,10 @@ config = {
     'databaseURL': 'lyonhacks-default-rtdb.firebaseio.com'
 }
 
+@app.route('/')
+def index():
+    return(render_template("index.html"))
+
 auth = pyrebase.initialize_app(config).auth()
 
 
