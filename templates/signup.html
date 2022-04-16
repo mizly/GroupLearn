@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel= "stylesheet" type= "text/css" href= "../static/bulma.css">
+    <title>Signup</title>
+  </head>
+    <div style = "background-color: rgba(0, 0, 0, 0.8); width:5000px; height:5000px; position:fixed; top:-10px"></div>
+    <div style = "background-color: rgba(0, 0, 0, 1); width:40%; height:60%; position:fixed; top:17%; left:31%; border-radius:25px;"></div>
+    {% if confirmFail %}
+    <p>Passwords entered do not match.</p>
+    {% endif %} {% if weakPwd %}
+    <p>Password should be at least 6 characters.</p>
+    {% endif %}
+
+    <h1 class = "content is-5" style = "color:white; position:fixed; left:41%; top:26%; font-size:400%;">
+      <b>Sign Up</b>
+    </h1>
+
+    <form method="POST">
+      <div style = "position:fixed; left:42%; top:40%;" class = "content">
+        <label for="name" style = "color:white;">Name:</label>
+        <input id="name" type="text" class = "input is-primary" style = "height:25px; width:200px;" placeholder = "Your name">
+
+        <label for="email" style = "color:white;">Email:</label>
+        <input id="email" type="text" class = "input is-primary" style = "height:25px; width:200px;" placeholder = "Your email">
+        <br>
+
+        <label for="pwd" style = "color:white;">Password:</label>
+        <input id="pwd" type="password" class = "input is-primary" style = "height:25px; width:200px;" placeholder = "Your password">
+        <br>
+
+        <label for="pwd" style = "color:white;">Re-enter Password:</label>
+        <input id="pwd_confirm" type="password" class = "input is-primary" style = "height:25px; width:200px;" placeholder = "Re-enter your password">
+        <br>
+
+        <input type="submit" class = "button is-danger" style = "left:30%; margin-top:20%;">
+
+    </div>
+    </form>
+
+    <img src=../static/logo.png width = 10% style = "position:fixed; left:46%; top:17%;">
+
+</html>
