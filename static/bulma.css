@@ -11809,8 +11809,6 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   padding: 3rem 1.5rem 6rem;
 }
 
-	form  { display: table;      }
-	p     { display: table-row;  }
 	label { display: table-cell; }
 	input { display: table-cell; }
 /*# sourceMappingURL=bulma.css.map */
