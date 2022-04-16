@@ -11812,4 +11812,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem;
 }
+	label { display: table-cell; }
+	input { display: table-cell; }
+
 /*# sourceMappingURL=bulma.css.map */
