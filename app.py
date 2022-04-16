@@ -26,7 +26,7 @@ def signup():
 
         if pwd != pwd_confirm:
             return render_template('signup.html', confirmFail=True, weakPwd=False)
-        
+
         try:
             user = auth.create_user_with_email_and_password(email, pwd)
             auth.send_email_verification(user['userToken'])
@@ -39,6 +39,10 @@ def signup():
                 return render_template('signup.html', confirmFail=False, weakPwd=True)
 
     return render_template('signup.html', confirmFail=False, weakPwd=False)
+
+@app.route("/login")
+def login():
+    return(render_template("login.html"))
 
 @app.route('/verify')
 def verify():
