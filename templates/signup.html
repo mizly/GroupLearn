@@ -26,11 +26,6 @@
       border-radius:25px;
     "
   ></div>
-  {% if confirmFail %}
-  <p>Passwords entered do not match.</p>
-  {% endif %} {% if weakPwd %}
-  <p>Password should be at least 6 characters.</p>
-  {% endif %}
 
   <a href = "/">
   <img src=../static/logo.png width = 10% style = "position:fixed; left: 45%; top:17%;">
@@ -81,6 +76,13 @@
         class="button is-primary"
         style="display: block; width: 150px; margin: auto;"
       />
+
+      {% if confirmFail %}
+      <p style = "display: block; color: red; text-align: center; width: 300px; margin: auto; padding: 10px;">Passwords entered do not match.</p>
+      {% endif %} {% if weakPwd %}
+      <p style = "display: block; color: red; text-align: center; width: 300px; margin: auto; padding: 10px;">Password should be at least 6 characters.</p>
+      {% endif %}
+
     </div>
   </form>
 </html>
