@@ -19,12 +19,12 @@
   <div
     style="
       background-color: rgba(0, 0, 0, 1);
-      width: 40%;
-      height: 60%;
-      position: fixed;
-      top: 17%;
-      left: 31%;
-      border-radius: 25px;
+      width:40%;
+      height:70%;
+      position:fixed;
+      top:15%;
+      left:30%;
+      border-radius:25px;
     "
   ></div>
 
@@ -32,38 +32,40 @@
   <div class="alert-danger">{{ content }}</div>
   {% endif %}
 
+  <a href = "/">
+  <img src=../static/logo.png width = 10% style = "position:fixed; left: 45%; top:17%;">
+  </a>
+
   <form method="POST">
-    <div style="position: fixed; left: 44%; top: 37%" class="content">
-      <label for="email" style="color: white">Email:</label>
+    <div style="position:fixed; left:30%; top:37%; width: 40%; margin: auto;" class="content">
+      <label for="email" style="display: block; text-align: center; color:white;">Email:</label>
       <input
         id="email"
         name="email"
         type="text"
         class="input is-primary"
-        style="height: 25px; width: 200px"
+        style="display: block; height:25px; width:200px; margin: auto;"
         placeholder="Your email"
       />
       <br />
 
-      <label for="pwd" style="color: white">Password:</label>
+      <label for="pwd" style="display: block; text-align: center; color:white; padding-top: 5px;">Password:</label>
       <input
         id="pwd"
         name="pwd"
         type="password"
         class="input is-primary"
-        style="height: 25px; width: 200px"
+        style="display: block; height:25px; width:200px; margin: auto;"
         placeholder="Your password"
       />
       <br />
 
       <input
         type="submit"
-        class="button is-danger"
-        style="left: 30%; margin-top: 20%"
+        class="button is-success"
+        style="display: block; width: 150px; margin: auto;"
       />
     </div>
   </form>
 
-  <img src=../static/logo.png width = 10% style = "position:fixed; left:46%;
-  top:17%;">
 </html>
