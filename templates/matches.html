@@ -6,5 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matches</title>
   </head>
-  <body></body>
+  <body>
+    {{ for match in matches }}
+    <p>Name: {{ match['info']['name'] }}</p>
+    <p>Email: {{ match['info']['email'] }}</p>
+    <p>Grade: {{ match['info']['grade'] }}</p>
+    <p>Subject: {{ match['info']['subject'] }}</p>
+    <p>Match Score: {{ match['score'] }}</p>
+    {{ endfor }}
+  </body>
 </html>

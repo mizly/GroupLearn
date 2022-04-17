@@ -53,8 +53,15 @@ def matches():
     user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
     
     scores = sort_compabitility(user_info, **dict(db.child('users').get().val()))
-    
-    return jsonify(scores)
+    scores = dict(sorted(scores.items(), key=lambda item: item[1]))
+
+    matches = []
+    for key in scores:
+        matches.append({ 'info': list(db.child('/users/' + key + '/').get().val().values())[0], 'score': scores[key] })
+
+    return render_template('matches.html', matches=matches)
+
+@app.route('/user')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -71,7 +78,7 @@ def signup():
         try:
             user = auth.create_user_with_email_and_password(email, pwd)
 
-            data = {'name': name, 'grade': 0, 'subjects': ['all'], 'day_available':[[True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]]}
+            data = {'name': name, 'email': email, 'grade': 0, 'subjects': ['all'], 'day_available':[[True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]]}
             
             accountInfo = auth.get_account_info(user['idToken'])
             db.child('/users/' + accountInfo['users'][0]['localId'] + '/').push(data, user['idToken'])
