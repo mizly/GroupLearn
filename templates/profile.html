@@ -7,26 +7,22 @@
     <title>Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-    <script>
-      var hash = CryptoJS.MD5("chickgaming117@gmail.com");
-      document.getElementById("pfp").src =
-        "https://www.gravatar.com/avatar/{{ user['email'] }}" + hash;
-    </script>
-  </head>
-  <body>
     <img
       id="pfp"
       src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
     />
+    <script>
+      var hash = CryptoJS.MD5("{{ user['email'] }}");
+      document.getElementById("pfp").src =
+        "https://www.gravatar.com/avatar/" + hash;
+    </script>
+  </head>
+  <body>
     <form method="POST">
       <label>Name</label>
       <input name="name" type="text" value="{{ user['name'] }}" />
       <label>Subjects (comma seperated)</label>
-      <input
-        name="subjects"
-        type="text"
-        value="{% for subject in user['subjects'] %}{{ subject }}{% endfor %}"
-      />
+      <input name="subjects" type="text" value="{{user['subjects'] }}" />
       <label>Grade</label>
       <input name="grade" type="number" value="{{ user['grade'] }}" />
 
