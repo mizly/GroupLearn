@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet", href = "{{ url_for('static', filename='bulma.css') }}">
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      ,
+      href="{{ url_for('static', filename='bulma.css') }}"
+    />
     <title></title>
   </head>
   <body>
     <style>
-
       .moveup {
         transition: transform 1s;
       }
 
-      .moveup:hover{
+      .moveup:hover {
         transform: translateY(-15%);
       }
 
@@ -21,34 +24,83 @@
         opacity: 0;
       }
 
-      .moveup:hover > .fadein{
+      .moveup:hover > .fadein {
         opacity: 1;
       }
-
     </style>
 
-    <div style = "position:fixed;margin-top:10%">
-      <div class = " content is-medium rectangle" style = "position:fixed; top:0px; left:60%; width:40%; margin-top:0px; height:1000%;">
-        <h1 style = "position:fixed; left:72%; color:white; margin-top:8%" class = "title is-1">GroupLearn</h1>
-          <p style = "width:80%; margin-left:10%; color:white; margin-top:35%; text-align:center;"> Here at GroupLearn, we aim to help you study better, and make friends along the way.
-          We believe that the best way to study is with someone else, and so, we made a fast and easy way to match with anyone, all over the world.
-          Using cutting-edge technology, all you have to do is put in some information about when and what you want to study, and you'll be paired
-          with somebody nearly-instantly. Not only will you learn much quicker, but you will make new friends. Get studying!</p>
-        <div style = "margin-top:0%">
-          <a href = "/signup" class = "button is-primary is-rounded" style = "width:40%; margin-left:30%">Sign up</a>
-          <a href = "/login" class = "button is-success is-rounded" style = "width:40%; margin-left:30%; margin-top:3%;">Log in</a>
+    <div style="position: fixed; margin-top: 10%">
+      <div
+        class="content is-medium rectangle"
+        style="
+          position: fixed;
+          top: 0px;
+          left: 60%;
+          width: 40%;
+          margin-top: 0px;
+          height: 1000%;
+        "
+      >
+        <h1
+          style="position: fixed; left: 72%; color: white; margin-top: 8%"
+          class="title is-1"
+        >
+          GroupLearn
+        </h1>
+        <p
+          style="
+            width: 80%;
+            margin-left: 10%;
+            color: white;
+            margin-top: 35%;
+            text-align: center;
+          "
+        >
+          Here at GroupLearn, we aim to help you study better, and make friends
+          along the way. We believe that the best way to study is with someone
+          else, and so, we made a fast and easy way to match with anyone, all
+          over the world. Using cutting-edge technology, all you have to do is
+          put in some information about when and what you want to study, and
+          you'll be paired with somebody nearly-instantly. Not only will you
+          learn much quicker, but you will make new friends. Get studying!
+        </p>
+        <div style="margin-top: 0%">
+          <a
+            href="/signup"
+            class="button is-primary is-rounded"
+            style="width: 40%; margin-left: 30%"
+            >Sign up</a
+          >
+          <a
+            href="/login"
+            class="button is-success is-rounded"
+            style="width: 40%; margin-left: 30%; margin-top: 3%"
+            >Log in</a
+          >
         </div>
-
       </div>
     </div>
 
-    <img src=../static/logo.png width = 13% style = "position:fixed; left:59%; top:-2%;">
-    <img src=../static/logobg.png width = 60% style = "position:fixed;">
+    <img src=../static/logo.png width = 13% style = "position:fixed; left:59%;
+    top:-2%;"> <img src=../static/logobg.png width = 60% style =
+    "position:fixed;">
 
-    <div class = "moveup" style = "position:fixed; left:15%; top:25%; width:30%; height:50%">
+    <div
+      class="moveup"
+      style="position: fixed; left: 15%; top: 25%; width: 30%; height: 50%"
+    >
       <img src=../static/logo.png width = 100% >
-      <h1 class = "content is-large fadein" style = "color:white; text-align: center; margin-top:-20%; text-shadow:2px 2px 8px #000000;">Learning made fun.</h1>
+      <h1
+        class="content is-large fadein"
+        style="
+          color: white;
+          text-align: center;
+          margin-top: -20%;
+          text-shadow: 2px 2px 8px #000000;
+        "
+      >
+        Learning made fun.
+      </h1>
     </div>
-
   </body>
 </html>
