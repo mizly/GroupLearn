@@ -27,25 +27,16 @@
       border-radius: 25px;
     "
   ></div>
-  {% if confirmFail %}
-  <p>Passwords entered do not match.</p>
-  {% endif %} {% if weakPwd %}
-  <p>Password should be at least 6 characters.</p>
+
+  {% if invalidPwd %}
+  <div class="alert-danger">{{ content }}</div>
   {% endif %}
 
   <form method="POST">
     <div style="position: fixed; left: 44%; top: 37%" class="content">
-      <label for="name" style="color: white">Name:</label>
-      <input
-        name="name"
-        type="text"
-        class="input is-primary"
-        style="height: 25px; width: 200px"
-        placeholder="Your name"
-      />
-
       <label for="email" style="color: white">Email:</label>
       <input
+        id="email"
         name="email"
         type="text"
         class="input is-primary"
@@ -56,21 +47,12 @@
 
       <label for="pwd" style="color: white">Password:</label>
       <input
+        id="pwd"
         name="pwd"
         type="password"
         class="input is-primary"
         style="height: 25px; width: 200px"
         placeholder="Your password"
-      />
-      <br />
-
-      <label for="pwd" style="color: white">Re-enter Password:</label>
-      <input
-        name="pwd_confirm"
-        type="password"
-        class="input is-primary"
-        style="height: 25px; width: 200px"
-        placeholder="Re-enter your password"
       />
       <br />
 
