@@ -13,8 +13,19 @@ config = {
     'databaseURL': 'lyonhacks-default-rtdb.firebaseio.com'
 }
 
-auth = pyrebase.initialize_app(config).auth()
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+db = firebase.database()
 
+@app.route('/verify')
+def verify():
+    token = request.cookies.get('token')
+    user = auth.get_account_info(token)
+    print(user)
+
+@app.route('/matches')
+def matches():
+    pass
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -31,20 +42,18 @@ def signup():
             user = auth.create_user_with_email_and_password(email, pwd)
             auth.send_email_verification(user['userToken'])
 
+            data = {'grade': 0, 'subjects': [], 'day_available':[]}
+            db.child('users').child(user['userToken']).set(data)
+            
             resp = make_response(redirect(url_for('verify')))
             resp.set_cookie('token', user['token'])
             return resp
         except Exception as err:
+            print(err)
             if 'WEAK_PASSWORD' in str(err):
                 return render_template('signup.html', confirmFail=False, weakPwd=True)
 
     return render_template('signup.html', confirmFail=False, weakPwd=False)
-
-@app.route('/verify')
-def verify():
-    token = request.cookies.get('token')
-    user = auth.get_account_info(token)
-    print(user)
 
 if __name__ == '__main__':
     app.run(debug=True)
