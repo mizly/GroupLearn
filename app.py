@@ -42,18 +42,19 @@ def verify():
 def matches():
     # if user hasn't logged in yet, it redirects to login page
     try:
-        session_id = request.cookies.get('ssid')
+        email = request.cookies.get('email')
+        password = request.cookies.get('password')
             
-        user = auth.sign_in_with_custom_token(session_id)
+        user = auth.sign_in_with_email_and_password(email, password)
         accountInfo = auth.get_account_info(user['idToken'])
     except:
         return redirect(url_for('login'))
             
     user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
     
-    scores = sort_compabitility(user_info, db.child('users'))
+    scores = sort_compabitility(user_info, **dict(db.child('users').get().val()))
     
-    return jsonify(list(scores.values()))
+    return jsonify(scores)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -67,22 +68,22 @@ def signup():
         if pwd != pwd_confirm:
             return render_template('signup.html', confirmFail=True, weakPwd=False)
 
-        #try:
-        user = auth.create_user_with_email_and_password(email, pwd)
+        try:
+            user = auth.create_user_with_email_and_password(email, pwd)
 
-        data = {'name': name, 'grade': 0, 'subjects': ['all'], 'day_available':[True, False]}
-        
-        accountInfo = auth.get_account_info(user['idToken'])
-        db.child('/users/' + accountInfo['users'][0]['localId'] + '/').push(data, user['idToken'])
+            data = {'name': name, 'grade': 0, 'subjects': ['all'], 'day_available':[[True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True], [True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True]]}
+            
+            accountInfo = auth.get_account_info(user['idToken'])
+            db.child('/users/' + accountInfo['users'][0]['localId'] + '/').push(data, user['idToken'])
 
-        resp = make_response(redirect(url_for('verify')))
-        resp.set_cookie('email', email)
-        resp.set_cookie('password', pwd)
-        return resp
-        # except Exception as err:
-        #     print(err)
-        #     if 'WEAK_PASSWORD' in str(err):
-        #         return render_template('signup.html', confirmFail=False, weakPwd=True)
+            resp = make_response(redirect(url_for('verify')))
+            resp.set_cookie('email', email)
+            resp.set_cookie('password', pwd)
+            return resp
+        except Exception as err:
+            print(err)
+            if 'WEAK_PASSWORD' in str(err):
+                return render_template('signup.html', confirmFail=False, weakPwd=True)
 
     return render_template('signup.html', confirmFail=False, weakPwd=False)
 
@@ -114,6 +115,7 @@ def login():
         email = request.cookies.get('email')
         password = request.cookies.get('password')
         user = auth.sign_in_with_email_and_password(email, password)
+        return redirect(url_for('matches'))
     except:
         return render_template('login.html', invalidPwd=False)
 
