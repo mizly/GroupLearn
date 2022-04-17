@@ -9,17 +9,19 @@
   </head>
   <body>
     {% if profileUpdated %}
+    <div class = "content" style = "margin:auto; width:50%; text-align:center;">
       <p>Profile updated.</p>
       {% endif %} {% for match in matches %}
-        <p>Name: {{ match['info']['name'] }}</p>
-        <p>Email: {{ match['info']['email'] }}</p>
-        <p>Grade: {{ match['info']['grade'] }}</p>
-        <p>
-          Subject: {% for subject in match['info']['subjects'] %} {{ subject }} {%
-          endfor %}
-        </p>
-        <p>Match Score: {{ match['score'] }}</p>
-      {% endfor %}
-        <a href="{{ url_for('profile') }}">profile</a>
-        </body>
+      <h1>Name: {{ match['info']['name'] }}</h1>
+      <p>Email: {{ match['info']['email'] }}</p>
+      <p>Grade: {{ match['info']['grade'] }}</p>
+      <p>
+        Subject: {% for subject in match['info']['subjects'] %} {{ subject }} {%
+        endfor %}
+      </p>
+      <p>Match Score: {{ match['score'] }}</p>
+    </div>
+    {% endfor %}
+    <a href="{{ url_for('profile') }}">profile</a>
+  </body>
 </html>
