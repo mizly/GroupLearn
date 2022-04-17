@@ -7,12 +7,15 @@
     <title>Matches</title>
   </head>
   <body>
-    {{ for match in matches }}
+    {% for match in matches %}
     <p>Name: {{ match['info']['name'] }}</p>
     <p>Email: {{ match['info']['email'] }}</p>
     <p>Grade: {{ match['info']['grade'] }}</p>
-    <p>Subject: {{ match['info']['subject'] }}</p>
+    <p>
+      Subject: {% for subject in match['info']['subjects'] %} {{ subject }} {%
+      endfor %}
+    </p>
     <p>Match Score: {{ match['score'] }}</p>
-    {{ endfor }}
+    {% endfor %}
   </body>
 </html>

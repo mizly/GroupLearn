@@ -44,7 +44,6 @@ def matches():
     try:
         email = request.cookies.get('email')
         password = request.cookies.get('password')
-            
         user = auth.sign_in_with_email_and_password(email, password)
         accountInfo = auth.get_account_info(user['idToken'])
     except:
@@ -66,7 +65,6 @@ def matches():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        print(request.args)
         name = request.form['name']
         email = request.form['email']
         pwd = request.form['pwd']
