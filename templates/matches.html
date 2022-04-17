@@ -7,7 +7,9 @@
     <title>Matches</title>
   </head>
   <body>
-    {% for match in matches %}
+    {% if profileUpdated %}
+    <p>Profile updated.</p>
+    {% endif %} {% for match in matches %}
     <p>Name: {{ match['info']['name'] }}</p>
     <p>Email: {{ match['info']['email'] }}</p>
     <p>Grade: {{ match['info']['grade'] }}</p>
@@ -17,5 +19,6 @@
     </p>
     <p>Match Score: {{ match['score'] }}</p>
     {% endfor %}
+    <a href="{{ url_for('profile') }}">profile</a>
   </body>
 </html>

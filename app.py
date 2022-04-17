@@ -60,7 +60,44 @@ def matches():
 
     return render_template('matches.html', matches=matches)
 
-@app.route('/user')
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if request.method == 'POST':
+        email = request.cookies.get('email')
+        password = request.cookies.get('password')
+        user = auth.sign_in_with_email_and_password(email, password)
+        accountInfo = auth.get_account_info(user['idToken'])
+
+        name = request.form['name']
+        grade = request.form['grade']
+        subjects = request.form['subjects'].split(',')
+
+        day_available = [[False]*24]*7
+        for key in dict(request.form):
+            if '-' in key:
+                print(key)
+                pos = key.split('-')
+                day_available[int(pos[0])][int(pos[1])] = True
+
+        data = {user['idToken']: {'name': name, 'grade': grade, 'subjects': subjects, 'day_available': day_available}}
+        db.child('/users/' + accountInfo['users'][0]['localId'] + '/').update(data, user['idToken'])
+
+        user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
+
+        return render_template('profile.html', user=user_info, profileUpdated=False)
+
+    # if user hasn't logged in yet, it redirects to login page
+    try:
+        email = request.cookies.get('email')
+        password = request.cookies.get('password')
+        user = auth.sign_in_with_email_and_password(email, password)
+        accountInfo = auth.get_account_info(user['idToken'])
+    except:
+        return redirect(url_for('login'))
+                
+    user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
+
+    return render_template('profile.html', user=user_info, profileUpdated=False)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
