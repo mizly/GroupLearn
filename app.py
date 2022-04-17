@@ -165,5 +165,9 @@ def login():
     except:
         return render_template('login.html', invalidPwd=False)
 
+@app.route("/listing")
+def listing():
+    return(render_template("listing.html"))
+
 if __name__ == '__main__':
     app.run(debug=True)
