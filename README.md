@@ -42,4 +42,4 @@ We actually have yet to host the website somehwere, but we'll get around to it s
 Mizly - Some guy who died trying to learn oauth verification  
 Cringemoment - Free front-end labour  
 Abel - Leading intellectual and and knower of many python packages  
-Rifltz - bogsorter and janitor
+Rifltz - Bogsorter and janitor
