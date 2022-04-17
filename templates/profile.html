@@ -22,11 +22,7 @@
       <label>Name</label>
       <input name="name" type="text" value="{{ user['name'] }}" />
       <label>Subjects (comma seperated)</label>
-      <input
-        name="subjects"
-        type="text"
-        value="{% for subject in user['subjects'] %}{{ subject }}{% endfor %}"
-      />
+      <input name="subjects" type="text" value="{{user['subjects'] }}" />
       <label>Grade</label>
       <input name="grade" type="number" value="{{ user['grade'] }}" />
 

@@ -79,7 +79,10 @@ def profile():
                 pos = key.split('-')
                 day_available[int(pos[0])][int(pos[1])] = True
 
-        data = {user['idToken']: {'name': name, 'grade': grade, 'subjects': subjects, 'day_available': day_available}}
+        local = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().keys())[0]
+        print(local)
+
+        data = {local: {'name': name, 'grade': grade, 'subjects': subjects, 'day_available': day_available}}
         db.child('/users/' + accountInfo['users'][0]['localId'] + '/').update(data, user['idToken'])
 
         user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
@@ -97,6 +100,7 @@ def profile():
                 
     user_info = list(db.child('/users/' + accountInfo['users'][0]['localId'] + '/').get(user['idToken']).val().values())[0]
 
+    user_info['subjects'] = ','.join(user_info['subjects'])
     return render_template('profile.html', user=user_info, profileUpdated=False)
 
 @app.route('/signup', methods=['GET', 'POST'])
