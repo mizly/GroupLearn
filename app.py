@@ -54,5 +54,9 @@ def verify():
     user = auth.get_account_info(token)
     print(user)
 
+@app.route("/listing")
+def listing():
+    return(render_template("listing.html"))
+
 if __name__ == '__main__':
     app.run(debug=True)
