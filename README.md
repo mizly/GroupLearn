@@ -35,7 +35,7 @@ We hope to add in native messaging as well as more integration options. Maybe ad
 
 # How to access it
 
-We actually have yet to host the website somehwere, but we'll get around to it soon!
+https://grouplearn-v1.herokuapp.com/
 
 # The people who built it
 
